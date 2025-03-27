@@ -7,7 +7,9 @@ import {
   interpolateColors,
   Sequence,
   delayRender,
-  continueRender
+  continueRender,
+  Audio,
+  staticFile
 } from "remotion";
 
 interface Slides {
@@ -37,6 +39,7 @@ preloadFont(
 
 export const MyComposition = () => {
   const [slides, setSlides] = useState<Slides|null>(null);
+  const [loading, setLoading]=useState(true);
   const [handle] = useState(() => delayRender());
   useEffect(()=>{
     fetch("https://6d9846de-bfef-43b5-98fa-3d12af4eeada.mock.pstmn.io/slides")
@@ -44,6 +47,7 @@ export const MyComposition = () => {
     .then((data)=>{
       setSlides(data);
       continueRender(handle);
+      setLoading(false)
     })
     // .then((data)=>{console.log("obj",data)})
     .catch((err)=>console.log(err))
@@ -196,11 +200,12 @@ export const MyComposition = () => {
     [timeToFrame(6), timeToFrame(7.5)],
     ["rgba(219,219,219,1)", "rgba(72,72,72,1)"],
   );
-  if (!slides) {
-    return <div className="text-red-500">Error loading data</div>; 
+  if(loading){
+    return <AbsoluteFill className="text-red-500 flex items-center justify-center text-8xl">Loading data...</AbsoluteFill>; 
   }
   return (
     <AbsoluteFill className="bg-[rgba(255,255,255,1)]  flex flex-col items-center justify-center">
+      {/* <Audio loop src={staticFile('relaxing-guitar-loop-v5-245859.mp3')}></Audio> */}
       <div className="text-black w-full h-full flex gap-5 items-center ">
         <AbsoluteFill
           className="top-[7%] flex flex-col w-[43%] h-[80.28%] items-start justify-center text-start"
