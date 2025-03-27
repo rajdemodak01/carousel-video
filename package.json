@@ -26,7 +26,7 @@
   },
   "scripts": {
     "dev": "remotion studio",
-    "build": "npx remotion bundle src/index.ts --output=build/bundle",
+    "build": "remotion bundle",
     "upgrade": "remotion upgrade",
     "lint": "eslint src && tsc"
   },
