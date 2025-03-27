@@ -284,7 +284,7 @@ export const MyComposition = () => {
             </h1>
           </div>
           <p
-            className="italic text-lg text-start text-black md:text-[90px] leading-[100%]"
+            className="italic text-lg text-start text-black md:text-[90px] text-[85px] leading-[100%]"
             style={{
               fontFamily: "Merriweather, serif",
             }}
