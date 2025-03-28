@@ -42,6 +42,7 @@ export const MyComposition = () => {
   const [loading, setLoading]=useState(true);
   const [handle] = useState(() => delayRender());
   useEffect(()=>{
+    //created a mock-server in Postman, and fetching data from there
     fetch("https://6d9846de-bfef-43b5-98fa-3d12af4eeada.mock.pstmn.io/slides")
     .then((res)=>res.json())
     .then((data)=>{
